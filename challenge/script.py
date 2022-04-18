@@ -1,17 +1,27 @@
 from sqlalchemy import create_engine
+from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy.sql import text
 from constanst import SQL_DIR,TABLE_NAMES
-from cfg import DB_CONNSTR
+from cfg import URL_DB
 import logging
-
-#conexion para la DB, el parametro es la direccion con la cual nos vamos a conectar a la db
-engine = create_engine(DB_CONNSTR)
-
-print(engine.url)
 
 log = logging.getLogger()
 
-def create_tables():
+
+
+def conect_db():
+
+    log.info(f'Conexion a la DB')
+    if not database_exists(URL_DB):
+        create_database(URL_DB)
+    
+    engine = create_engine(URL_DB)
+
+    return engine
+
+
+
+def create_tables(engine):
     ''''Creo las tablas de la db'''
     with engine.connect() as con:
         for file in TABLE_NAMES:
@@ -25,4 +35,5 @@ def create_tables():
 
 
 if __name__ == '__main__':
-    create_tables()
+    engine = conect_db()
+    create_tables(engine)
