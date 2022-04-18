@@ -8,8 +8,7 @@ config = AutoConfig(search_path = ROOT_DIR)
 
 # levanto las variables
 
-DB_CONNSTR = config('DB_CONNSTR' )
-
+URL_DB = config('URL_DB' )
 MUSEO_URL = config('MUSEO_URL')
 CINES_URL = config('CINES_URL')
 ESPACIOS_URL = config('ESPACIOS_URL')
