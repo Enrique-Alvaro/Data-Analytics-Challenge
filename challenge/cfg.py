@@ -1,14 +1,14 @@
 from decouple import AutoConfig
-from constanst import ROOT__DIR
+from constanst import  ROOT_DIR
 
 
 # instancio config diciendole donde tiene que buscar los valores para las variables
 # levanto las variables
-config = AutoConfig(search_path=ROOT_DIR)
+config = AutoConfig(search_path = ROOT_DIR)
 
 # levanto las variables
 
-DB_CONNSTR = config('DB_CONNSTR')
+DB_CONNSTR = config('DB_CONNSTR' )
 
 MUSEO_URL = config('MUSEO_URL')
 CINES_URL = config('CINES_URL')

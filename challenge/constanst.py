@@ -8,7 +8,7 @@ BASE_FILE_DIR = Path('/tmp')
 # parent me da la carpeta madre de la carpeta actual
 ROOT_DIR = Path().resolve().parent
 
-#creo ruta para la ubicacion de mis archivos SQL
+# defino ruta para la ubicacion de mis archivos SQL
 SQL_DIR = ROOT_DIR / 'challenge/sql'
 
 
@@ -18,7 +18,7 @@ RAW_TABLE_NAME = 'raw'
 CINE_INSIGHTS_TABLE_NAME = 'cine_insights'
 SOURCE_SIZE_TABLE_NAME = 'size_by_datasource'
 CATEGORY_COUNT_TABLE_NAME = 'size_by_category'
-PROV_CAT_COUNT_TABLE_NAME = 'size_by_datasource'
+PROV_CAT_COUNT_TABLE_NAME = 'size_by_prov_source'
 
 
 TABLE_NAMES = [

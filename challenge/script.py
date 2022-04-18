@@ -7,6 +7,8 @@ import logging
 #conexion para la DB, el parametro es la direccion con la cual nos vamos a conectar a la db
 engine = create_engine(DB_CONNSTR)
 
+print(engine.url)
+
 log = logging.getLogger()
 
 def create_tables():
