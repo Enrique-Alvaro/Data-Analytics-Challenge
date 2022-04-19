@@ -9,7 +9,7 @@ import pandas as pd
 log = logging.getLogger()
 
 class UrlExtractor:
-    file_path_crib =(
+    path_model =(
         '{category}/{year}-{month:02d}/{category}-{day:02d}-{month:02d}-{year}.csv'
     )
 
@@ -21,7 +21,8 @@ class UrlExtractor:
         
         log.info(f'Extrayendo {self.name}')
         date = datetime.strptime(date_str, '%Y-%m-%d').date()
-        file_path = self.file_path_crib.format(
+
+        file_path = self.path_model.format(
             category=self.name, year = date.year, month = date.month, day = date.day
         )
         m_path = BASE_FILE_DIR / file_path
@@ -30,7 +31,7 @@ class UrlExtractor:
         r = requests.get(self.url)
         r.encoding = 'utf-8'
 
-        log.info(f'Storing file {m_path}')
+        log.info(f'Guardando {m_path}')
         with open(m_path, 'w', encoding="utf-8") as f_out:
             f_out.write(r.text)
 
