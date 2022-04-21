@@ -1,12 +1,28 @@
 from http.client import ImproperConnectionState
 from unicodedata import category, name
-from constanst import BASE_FILE_DIR
+from constanst import CSVS_DIR
 from datetime import datetime
 import requests 
 import logging
 import pandas as pd
 
 log = logging.getLogger()
+
+column_list = [
+            'cod_localidad',
+            'id_provincia',
+            'id_departamento',
+            'categoria',
+            'provincia',
+            'localidad',
+            'nombre',
+            'domicilio',
+            'codigo postal',
+            'numero de telefono',
+            'mail',
+            'web'
+        ]
+
 
 class UrlExtractor:
     path_model =(
@@ -25,7 +41,7 @@ class UrlExtractor:
         file_path = self.path_model.format(
             category=self.name, year = date.year, month = date.month, day = date.day
         )
-        m_path = BASE_FILE_DIR / file_path
+        m_path = CSVS_DIR / file_path
         m_path.parent.mkdir(parents=True, exist_ok= True)
 
         r = requests.get(self.url)
@@ -38,39 +54,28 @@ class UrlExtractor:
         return m_path
 
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
+        pass
+
+class BibliotecaExtractor(UrlExtractor):
+    
+    def transform(self, df: pd.DataFrame) -> pd.DataFrame:
 
         rename_columns = {
             'Cod_Loc' : 'cod_localidad',
             'IdProvincia' : 'id_provincia',
             'IdDepartamento' : 'id_departamento',
-            'Provincia' : 'provincia',
             'Categoría' : 'categoria',
-            'Dirección' : 'domicilio',
-            'CP' : 'codigo postal',
+            'Provincia' : 'provincia',
             'Localidad' : 'localidad',
             'Nombre' : 'nombre',
             'Domicilio' : 'domicilio',
+            'CP' : 'codigo postal',
             'Teléfono' : 'numero de telefono',
             'Mail' : 'mail',
             'Web' : 'web'
         }
 
         df = df.rename(columns= rename_columns)
-
-        column_list = [
-            'cod_localidad',
-            'id_provincia',
-            'id_departamento',
-            'categoria',
-            'provincia',
-            'localidad',
-            'nombre',
-            'domicilio',
-            'codigo postal',
-            'numero de telefono',
-            'mail',
-            'web'
-        ]
 
         return df[column_list]
 
@@ -80,33 +85,39 @@ class MuseoExtractor(UrlExtractor):
 
         rename_columns = {
             'Cod_Loc' : 'cod_localidad',
-            'IdProvincia' : 'id_provincia',
+            'IdProvincia': 'id_provincia',
             'IdDepartamento' : 'id_departamento',
             'direccion' : 'domicilio',
-            'CP' : 'codigo postal',
+            'CP' : 'codigo_postal',
             'telefono' : 'numero de telefono',
             'Mail' : 'mail',
-            'Web' : 'web',
-            'fuente' : 'Fuente'
-        }  
-
+            'Web': 'web',
+        }
 
         df = df.rename(columns= rename_columns)
 
-        column_list = [
-            'cod_localidad',
-            'id_provincia',
-            'id_departamento',
-            'categoria',
-            'provincia',
-            'localidad',
-            'nombre',
-            'domicilio',
-            'codigo postal',
-            'numero de telefono',
-            'mail',
-            'web'
-        ]
-        
+        return df[column_list]
+
+
+class CineExtractor(UrlExtractor):
+    
+    def transform(self, df: pd.DataFrame) -> pd.DataFrame:
+
+        rename_columns = {
+            'Cod_Loc' : 'cod_localidad',
+            'IdProvincia' : 'id_provincia',
+            'IdDepartamento' : 'id_departamento',
+            'Categoría' : 'categoria',
+            'Provincia' : 'provincia',
+            'Localidad' : 'localidad',
+            'Nombre' : 'nombre',
+            'Dirección' : 'domicilio',
+            'CP' : 'codigo postal',
+            'Teléfono' : 'numero de telefono',
+            'Mail' : 'mail',
+            'Web' : 'web'
+        }
+
+        df = df.rename(columns= rename_columns)
 
         return df[column_list]
