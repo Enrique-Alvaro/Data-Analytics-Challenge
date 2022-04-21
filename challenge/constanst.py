@@ -1,30 +1,27 @@
 from pathlib import Path
 
-#Donde voy a poner mis archivos
-BASE_FILE_DIR = Path('/tmp')
+#Ubicacion archivos CSV
+CSVS_DIR = Path('/tmp')
 
-# Ubicacion de mi proyecto
-# Resolve me da la ubicacion actual
-# parent me da la carpeta madre de la carpeta actual
 ROOT_DIR = Path().resolve().parent
 
 # defino ruta para la ubicacion de mis archivos SQL
-SQL_DIR = ROOT_DIR / 'challenge/sql'
+SQL_DIR = ROOT_DIR /'challenge/sql'
 
 
 #Nombres de las tablas para Sql
+TABLE_BASE = 'base'
+CINE_INSIGHTS_TABLE = 'cine_insights'
+CANT_FUENTE_TABLE= 'cant_by_fuente'
+CANT_CATEGORIA_TABLE = 'cant_by_categoria'
+CANT_PROV_CATEGORIA_TABLE = 'cant_by_prov_categoria'
 
-RAW_TABLE_NAME = 'raw'
-CINE_INSIGHTS_TABLE_NAME = 'cine_insights'
-SOURCE_SIZE_TABLE_NAME = 'size_by_datasource'
-CATEGORY_COUNT_TABLE_NAME = 'size_by_category'
-PROV_CAT_COUNT_TABLE_NAME = 'size_by_prov_source'
 
-
-TABLE_NAMES = [
-    RAW_TABLE_NAME,
-    CINE_INSIGHTS_TABLE_NAME,
-    SOURCE_SIZE_TABLE_NAME,
-    CATEGORY_COUNT_TABLE_NAME,
-    PROV_CAT_COUNT_TABLE_NAME,
+TABLES = [
+    TABLE_BASE ,
+    CINE_INSIGHTS_TABLE,
+    CANT_FUENTE_TABLE,
+    CANT_CATEGORIA_TABLE,
+    CANT_PROV_CATEGORIA_TABLE
 ]
+
