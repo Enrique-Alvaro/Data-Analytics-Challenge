@@ -6,7 +6,7 @@ config = AutoConfig(search_path = ROOT_DIR)
 URL_DB = config('URL_DB' )
 MUSEO_URL = config('MUSEO_URL')
 CINES_URL = config('CINES_URL')
-ESPACIOS_URL = config('ESPACIOS_URL')
+BIBLIOTECAS_URL = config('BIBLIOTECAS_URL')
 
 museo_ds = {
     'name' : 'museo',
@@ -18,7 +18,7 @@ cines_ds = {
     'url': CINES_URL,
 }
 
-espacios_ds = {
+bibliotecas_ds = {
     'name' : 'espacios',
-    'url': ESPACIOS_URL,
+    'url': BIBLIOTECAS_URL,
 }
