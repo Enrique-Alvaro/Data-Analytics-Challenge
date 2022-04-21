@@ -1,7 +1,9 @@
 import click
+from challenge.extractors import BibliotecaExtractor, CineExtractor
 from extractors import MuseoExtractor, UrlExtractor
 import pandas as pd
 from constanst import BASE_FILE_DIR
+import logging
 from cfg import (
     museo_ds,
     cines_ds,
@@ -9,38 +11,40 @@ from cfg import (
 )
 
 from loaders import (
+    BaseLoader,
     CineInsightsLoader,
-    SizeByCategoryLoader,
-    SizeByCatProvLoader,
-    SizeBySourceLoader
+    CantCategoriaLoader,
+    CantProvCategoria,
+    CantFuenteLoader
 )
-
-import logging
 
 
 log = logging.getLogger()
-extractors_dict = {
+
+extractores_diccionario = {
     'museo' : MuseoExtractor(museo_ds['name'], museo_ds['url']),
-    'cines' : UrlExtractor(cines_ds['name'], cines_ds['url']),
-    'espacios' : UrlExtractor(espacios_ds['name'], espacios_ds['url']),
+    'cines' : CineExtractor(cines_ds['name'], cines_ds['url']),
+    'bibliotecas' : BibliotecaExtractor(espacios_ds['name'], espacios_ds['url']),
 }
 
-def extract_raws(date_str: str) -> list[str]:
-    file_paths = dict()
-    for name, extractor in extractors_dict.items():
+def extraer_datos(date_str: str) -> list[str]:
+    paths_csvs = dict()
+    for name, extractor in extractores_diccionario.items():
         file_path = extractor.extract(date_str)
-        file_paths[name] = file_path
-    return file_paths
+        paths_csvs[name] = file_path
+    return paths_csvs
 
-def merge_raw(file_paths: list[str], out_file_path: str) -> str:
-    dfs_transformed = list()
+def merge_csv(paths_csvs: list[str], path_file: str) -> str:
+    transformados = list()
 
-    for name, extractor in extractors_dict.items():
-        df = pd.read_csv(file_paths[name])
-        dft = extractor.transform(df)
-        dfs_transformed.append(dft)
-        pd.concat(dfs_transformed, axis=0).to_csv(out_file_path)
-    return out_file_path
+    for name, extractor in extractores_diccionario.items():
+        df = pd.read_csv(paths_csvs[name])
+
+        df_transformado = extractor.transform(df)
+        transformados.append(df_transformado)
+
+        pd.concat(transformados, axis=0).to_csv(path_file)
+    return path_file
 
 
 @click.command()
@@ -48,18 +52,20 @@ def merge_raw(file_paths: list[str], out_file_path: str) -> str:
 def run_pipeline(date: str) -> None:
     #Extract 
     log.info('Extracting')
-    file_paths = extract_raws(date)
+    paths_csvs = extraer_datos(date)
 
     #transform
     merge_path = BASE_FILE_DIR / 'merge_df_{date}.csv'
-    merge_raw(file_paths, merge_path)
+    merge_csv(paths_csvs, merge_path)
 
     #load
     log.info('Loading')
-    CineInsightsLoader().load_table(file_paths['cines'])
-    SizeByCategoryLoader().load_table(merge_path)
-    SizeBySourceLoader().load_table(file_paths)
-    SizeByCatProvLoader().load_table(merge_path)
+    BaseLoader().load_table(merge_path)
+    CineInsightsLoader.load_table(paths_csvs['cines'])
+    CantCategoriaLoader.load_table(merge_path)
+    CantProvCategoria.load_table(merge_path)
+    CantFuenteLoader.load_table(paths_csvs)
+
     log.info('Done')
 
 
