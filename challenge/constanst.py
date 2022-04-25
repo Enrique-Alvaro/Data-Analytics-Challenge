@@ -12,9 +12,9 @@ SQL_DIR = ROOT_DIR /'challenge/sql'
 #Nombres de las tablas para Sql
 TABLE_BASE = 'base'
 CINE_INSIGHTS_TABLE = 'cine_insights'
-CANT_FUENTE_TABLE= 'cant_by_fuente'
-CANT_CATEGORIA_TABLE = 'cant_by_categoria'
-CANT_PROV_CATEGORIA_TABLE = 'cant_by_prov_categoria'
+CANT_FUENTE_TABLE= 'cant_por_fuente'
+CANT_CATEGORIA_TABLE = 'cant_por_categoria'
+CANT_PROV_CATEGORIA_TABLE = 'cant_por_prov_categoria'
 
 
 TABLES = [

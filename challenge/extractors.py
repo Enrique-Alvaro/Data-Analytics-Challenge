@@ -1,5 +1,3 @@
-from http.client import ImproperConnectionState
-from unicodedata import category, name
 from constanst import CSVS_DIR
 from datetime import datetime
 import requests 
@@ -88,7 +86,7 @@ class MuseoExtractor(UrlExtractor):
             'IdProvincia': 'id_provincia',
             'IdDepartamento' : 'id_departamento',
             'direccion' : 'domicilio',
-            'CP' : 'codigo_postal',
+            'CP' : 'codigo postal',
             'telefono' : 'numero de telefono',
             'Mail' : 'mail',
             'Web': 'web',

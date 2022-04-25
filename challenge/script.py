@@ -10,7 +10,7 @@ log = logging.getLogger()
 
 
 def conect_db():
-
+    ''''Me conecto a la db'''
     log.info(f'Conexion a la DB')
     if not database_exists(URL_DB):
         create_database(URL_DB)
