@@ -8,8 +8,20 @@ from constanst import (
     CANT_CATEGORIA_TABLE,
     CANT_PROV_CATEGORIA_TABLE
 )
+import logging
+from sqlalchemy_utils import database_exists, create_database
 
-engine  = create_engine(URL_DB)
+def conect_db():
+    ''''Me conecto a la db'''
+    log.info(f'Conexion a la DB')
+    if not database_exists(URL_DB):
+        log.info(f'Creo la DB')
+        create_database(URL_DB)
+    
+    engine = create_engine(URL_DB)
+
+    return engine
+
 
 class BaseLoader():
     table_name = TABLE_BASE
@@ -65,3 +77,9 @@ class CantProvCategoria():
 
         df_prov_categoria.to_sql(CANT_PROV_CATEGORIA_TABLE, con= engine, index = False, if_exists = 'replace')
     
+
+
+if __name__ == "__main__":
+    log = logging.getLogger()
+
+    engine  = conect_db()
