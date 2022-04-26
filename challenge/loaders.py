@@ -13,6 +13,7 @@ from sqlalchemy_utils import database_exists, create_database
 
 def conect_db():
     ''''Me conecto a la db'''
+    
     log.info(f'Conexion a la DB')
     if not database_exists(URL_DB):
         log.info(f'Creo la DB')
