@@ -1,6 +1,6 @@
 settings.ini
 poetry.lock
-pyproject.toml
+**.toml
+**.lock
 settings.ini
 __pycache__/
-.ipynb_checkpoints
