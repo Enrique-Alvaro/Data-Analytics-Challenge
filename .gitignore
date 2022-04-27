@@ -1,6 +1,2 @@
 settings.ini
-poetry.lock
-**.toml
-**.lock
-settings.ini
 __pycache__/
