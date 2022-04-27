@@ -2,6 +2,7 @@ import click
 import pandas as pd
 from constanst import CSVS_DIR
 import logging
+from datetime import datetime
 from cfg import (
     museo_ds,
     cines_ds,
@@ -18,7 +19,7 @@ from loaders import (
     BaseLoader,
     CineInsightsLoader,
     CantCategoriaLoader,
-    CantProvCategoria,
+    CantProvCategoriaLoader,
     CantFuenteLoader
 )
 
@@ -50,19 +51,21 @@ def merge_csv(paths_csvs: list[str], path_file: str) -> str:
 
         pd.concat(transformados, axis=0).to_csv(path_file)
 
-    print('\n LLEGO \n')
     return path_file
 
 
 @click.command()
 @click.option('--date', help= 'run date in format yyyy-mm-dd')
 def run_pipeline(date: str) -> None:
+
+
+
     #Extract 
     log.info('Extracting')
     paths_csvs = extraer_datos(date)
 
     #transform
-    merge_path = CSVS_DIR / 'merge_df_{date}.csv'
+    merge_path = CSVS_DIR / f'merge_df_{date}.csv'
     merge_csv(paths_csvs, merge_path)
 
     #load
@@ -70,7 +73,7 @@ def run_pipeline(date: str) -> None:
     BaseLoader().load_table(merge_path)
     CineInsightsLoader().load_table(paths_csvs['cines'])
     CantCategoriaLoader().load_table(merge_path)
-    CantProvCategoria().load_table(merge_path)
+    CantProvCategoriaLoader().load_table(merge_path)
     CantFuenteLoader().load_table(paths_csvs)
 
     log.info('Done')

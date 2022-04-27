@@ -1,20 +1,20 @@
 from pathlib import Path
 
-#Ubicacion archivos CSV
-CSVS_DIR = Path('/tmp')
-
 ROOT_DIR = Path().resolve().parent
 
+#Ubicacion archivos CSV
+CSVS_DIR = ROOT_DIR /'data'
+
 # defino ruta para la ubicacion de mis archivos SQL
-SQL_DIR = ROOT_DIR /'challenge/sql'
+SQL_DIR = ROOT_DIR /'sql'
 
 
 #Nombres de las tablas para Sql
 TABLE_BASE = 'base'
-CINE_INSIGHTS_TABLE = 'cine_insights'
-CANT_FUENTE_TABLE= 'cant_por_fuente'
-CANT_CATEGORIA_TABLE = 'cant_por_categoria'
-CANT_PROV_CATEGORIA_TABLE = 'cant_por_prov_categoria'
+CINE_INSIGHTS_TABLE = 'cine_insights_table'
+CANT_FUENTE_TABLE= 'cant_fuente_table'
+CANT_CATEGORIA_TABLE = 'cant_categoria_table'
+CANT_PROV_CATEGORIA_TABLE = 'cant_categ_prov_table'
 
 
 TABLES = [

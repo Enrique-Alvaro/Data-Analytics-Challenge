@@ -1,0 +1,17 @@
+certifi==2021.10.8; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+charset-normalizer==2.0.12; python_full_version >= "3.6.0" and python_version >= "3"
+click==8.1.2; python_version >= "3.7"
+colorama==0.4.4; python_version >= "3.7" and python_full_version < "3.0.0" and platform_system == "Windows" or platform_system == "Windows" and python_version >= "3.7" and python_full_version >= "3.5.0"
+greenlet==1.1.2; python_version >= "3" and python_full_version < "3.0.0" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32") and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0") and (python_version >= "3.4" and python_full_version < "3.0.0" and python_version < "4.0" or python_version >= "3.4" and python_version < "4.0" and python_full_version >= "3.6.0") or python_version >= "3" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32") and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0") and python_full_version >= "3.5.0" and (python_version >= "3.4" and python_full_version < "3.0.0" and python_version < "4.0" or python_version >= "3.4" and python_version < "4.0" and python_full_version >= "3.6.0")
+idna==3.3; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.5"
+numpy==1.22.3
+pandas==1.4.2; python_version >= "3.8"
+psycopg2==2.9.3; python_version >= "3.6"
+python-dateutil==2.8.2; python_version >= "3.8" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.8"
+python-decouple==3.6
+pytz==2022.1; python_version >= "3.8"
+requests==2.27.1; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.6.0")
+six==1.16.0; python_version >= "3.8" and python_full_version < "3.0.0" and python_version < "4.0" or python_version >= "3.8" and python_version < "4.0" and python_full_version >= "3.3.0"
+sqlalchemy-utils==0.38.2; python_version >= "3.4" and python_version < "4.0"
+sqlalchemy==1.4.35; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.6.0")
+urllib3==1.26.9; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version < "4"

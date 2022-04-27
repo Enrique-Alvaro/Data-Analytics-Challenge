@@ -14,7 +14,7 @@ museo_ds = {
 }
 
 cines_ds = {
-    'name' : 'cines_',
+    'name' : 'cines',
     'url': CINES_URL,
 }
 

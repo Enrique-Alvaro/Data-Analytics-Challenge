@@ -1,1 +1,6 @@
 settings.ini
+poetry.lock
+pyproject.toml
+settings.ini
+__pycache__/
+__.ipynb_checkpoints__/
